@@ -1,6 +1,23 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+    
+    @font-face {
+        font-family: 'Nova Regular';
+        src: url('/fonts/proximanova_regular.ttf') format('ttf');
+        font-style: normal;
+        font-display: swap;
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: 'Nova Bold';
+        src: url('/fonts/proximanova_bold.otf') format('otf');
+        font-style: normal;
+        font-display: swap;
+        font-weight: 700;
+    }
+
     /*
     http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
@@ -64,8 +81,8 @@ const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         font-family: ${({ theme }) => theme.fonts.main};
-        background-color: ${({ theme }) => theme.colors.background};
-        color: ${({ theme }) => theme.colors.text};
+        background-color: ${({ theme }) => theme.colors.white};
+        color: ${({ theme }) => theme.colors.textMain};
     }
     
     a {
