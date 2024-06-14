@@ -4,18 +4,22 @@ const GlobalStyles = createGlobalStyle`
     
     @font-face {
         font-family: 'Nova Regular';
-        src: url('/fonts/proximanova_regular.ttf') format('ttf');
+        src: url('/fonts/ProximaNova-Regular.eot');
+        src: url('/fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/ProximaNova-Regular.woff') format('woff'),
+        url('/fonts/ProximaNova-Regular.ttf') format('truetype');
+        font-weight: normal;
         font-style: normal;
-        font-display: swap;
-        font-weight: 400;
     }
 
     @font-face {
         font-family: 'Nova Bold';
-        src: url('/fonts/proximanova_bold.otf') format('otf');
+        src: url('/fonts/ProximaNova-Bold.eot');
+        src: url('/fonts/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/ProximaNova-Bold.woff') format('woff'),
+        url('/fonts/ProximaNova-Bold.ttf') format('truetype');
+        font-weight: normal;
         font-style: normal;
-        font-display: swap;
-        font-weight: 700;
     }
 
     /*
