@@ -10,6 +10,7 @@ export const MainTheme = {
         textLight: '#8189A3',
         // PurpleFog
         icons: '#432EAB',
+        shadowDark: '#432EAB66',
     },
     fonts: {
         main: 'Nova Regular',

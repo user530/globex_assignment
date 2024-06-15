@@ -100,6 +100,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: inherit;
         font-size: inherit;
         cursor: pointer;
+        padding: 0;
         
         &:focus {
             outline: none;
