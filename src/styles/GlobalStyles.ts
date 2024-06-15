@@ -89,9 +89,21 @@ const GlobalStyles = createGlobalStyle`
         color: ${({ theme }) => theme.colors.textMain};
     }
     
-    a {
+    a, a:hover {
         text-decoration: none;
         color: inherit;
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        cursor: pointer;
+        
+        &:focus {
+            outline: none;
+        }
     }
 `;
 
