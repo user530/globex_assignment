@@ -10,6 +10,7 @@ export const StyledHeader = styled.header`
     text-align: center;
     text-transform: uppercase;
     line-height: 1.7;
+    flex-shrink: 0;
 `;
 
 export const StyledHeading = styled(H1)``;
