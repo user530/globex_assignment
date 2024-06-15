@@ -20,8 +20,14 @@ export const StyledSearchInput = styled.input.attrs({ type: 'search' })`
 
     &::-webkit-search-cancel-button {
         position: relative;
-        right: -10px;
+        right: -6px;
         font-size: 18px;
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: ${({ theme }) => `0 0 12px ${theme.colors.shadowDark}`};
     }
 `;
 
@@ -32,4 +38,5 @@ top: 50%;
 transform: translateY(-50%);
 width: 20px;
 height: 20px;
+color: ${({ theme }) => theme.colors.icons};
 `;
