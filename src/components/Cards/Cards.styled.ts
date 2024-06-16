@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 
 export const Cards = styled.div`
     display: grid;
@@ -22,4 +23,28 @@ export const CardsPlaceholder = styled.div`
     align-items: center;
     padding-block: 100px;
     border: ${({ theme }) => `2px dashed ${theme.colors.textLight}`};
+`;
+
+const spin = keyframes`
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+`;
+
+interface SpinnerProps {
+    size?: number;
+    color?: string;
+}
+
+export const Spinner = styled.div<SpinnerProps>`
+    width: ${({ size }) => `${size || 200}px`};
+    height: ${({ size }) => `${size || 200}px`};
+    border: ${({ size }) => `${(size || 200) / 4}px solid`};
+    border-top-color: ${({ color }) => color ?? 'red'};
+    border-radius: 50%;
+    background: transparent;
+    animation: ${spin} 1s linear infinite;
 `;

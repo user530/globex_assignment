@@ -1,1 +1,1 @@
-export { ZodValidationUser } from './zodValidation';
+export { ZodValidationUsers } from './zodValidation';

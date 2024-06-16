@@ -4,8 +4,11 @@ import { Container } from '../../styles/shared';
 import { Popup, Searchbar, UserCards } from '../../components';
 import { HomeSection } from './Home.styled';
 import { User } from '../../types';
+import { fetchData } from '../../utils/api';
+import { ZodValidationUsers } from '../../utils/validation';
 
 export const HomePage: React.FC = () => {
+    const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const [users, setUsers] = React.useState<User[]>([
         {
             "name": "Ferdinand Carney",
@@ -72,16 +75,49 @@ export const HomePage: React.FC = () => {
         },
     ]);
     const [popup, setPopup] = React.useState<User | null>(null);
+    const abortController = React.useRef<AbortController | null>(null);
 
     const openCard = React.useCallback((user: User) => setPopup(user), []);
     const closePopup = React.useCallback(() => setPopup(null), []);
+
+    const fetchAndSet = async () => {
+        try {
+            setIsLoading(true);
+            // Abort request if any in action
+            if (abortController.current)
+                abortController.current.abort();
+
+            // Setup new abort controller
+            abortController.current = new AbortController();
+
+            // Fetch data
+            const data = await fetchData('/', {}, abortController.current.signal);
+
+            const validated = new ZodValidationUsers().validate(data);
+
+            if (!validated)
+                throw new Error('Incorrect data structure');
+        } catch (error) {
+            console.log('Failed to fetch and set:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    React.useEffect(
+        () => {
+
+            fetchAndSet();
+        },
+        []
+    )
 
     return (
         <MainLayout>
             <HomeSection>
                 <Container>
                     <Searchbar onSearch={(str) => console.log(str)} />
-                    <UserCards users={users} cardClickHandler={openCard} />
+                    <UserCards users={users} cardClickHandler={openCard} isLoading={isLoading} />
                 </Container>
                 <Popup user={popup} closePopupHandler={closePopup} />
             </HomeSection>

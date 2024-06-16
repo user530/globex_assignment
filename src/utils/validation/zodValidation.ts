@@ -11,8 +11,10 @@ const UserSchema = z.object({
     hire_date: z.string(),
 });
 
-export class ZodValidationUser implements ValidationService<User> {
-    validate(data: unknown): User {
-        return UserSchema.parse(data);
+const UserListSchema = z.array(UserSchema);
+
+export class ZodValidationUsers implements ValidationService<User[]> {
+    validate(data: unknown): User[] {
+        return UserListSchema.parse(data);
     }
 }
