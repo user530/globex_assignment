@@ -1,9 +1,14 @@
+import React from 'react';
 import { StyledFooter } from './Footer.styled';
 
-export const Footer = () => {
+interface IFooter {
+    footerText?: string;
+}
+
+export const Footer: React.FC<IFooter> = ({ footerText }) => {
     return (
         <StyledFooter>
-            <p>&copy; Copyright 2024</p>
+            <p>{footerText ?? <>&copy; Copyright 2024</>}</p>
         </StyledFooter>
     )
 }

@@ -1,11 +1,16 @@
+import React from 'react';
 import { Container } from '../../styles/shared';
 import { StyledHeader, StyledHeading } from './Header.styled';
 
-export const Header = () => {
+interface IHeader {
+    headingText?: string;
+}
+
+export const Header: React.FC<IHeader> = ({ headingText }) => {
     return (
         <StyledHeader>
             <Container>
-                <StyledHeading>Heading</StyledHeading>
+                <StyledHeading>{headingText ?? 'Heading'}</StyledHeading>
             </Container>
         </StyledHeader>
     );
