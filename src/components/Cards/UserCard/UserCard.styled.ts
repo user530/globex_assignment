@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { H3 } from '../../styles/shared';
+import { H3 } from '../../../styles/shared';
 
 export const StyledCard = styled.div`
     min-height: 314px;
