@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import {
     StyledPopup,
     StyledPopupCard,
@@ -15,67 +15,102 @@ import {
     StyledPopupTextParagraph,
 } from './Popup.styled';
 import { CustomIcon } from '../index';
+import { User } from '../../types';
 
-export const Popup: React.FC = () => {
+interface IPopup {
+    user: User | null;
+    closePopupHandler: () => void;
+}
+
+export const Popup: React.FC<IPopup> = ({ user, closePopupHandler }) => {
+    if (!user)
+        return <></>;
+
+    const {
+        name,
+        phone,
+        email,
+        hire_date,
+        position_name,
+        department,
+        address,
+    } = user;
+
+    const overlayClickHandler = (e: MouseEvent) => {
+        if (e.target === e.currentTarget)
+            closePopupHandler();
+    }
+
     return (
-        <StyledPopup>
+        <StyledPopup onClick={overlayClickHandler}>
             <StyledPopupCard>
-                <PopupCardHeader />
-                <PopupCardList />
-                <PopupCardText />
+                <PopupCardHeader name={name} closeClickHandler={closePopupHandler} />
+                <PopupCardList userData={{ phone, email, hire_date, position_name, department }} />
+                <PopupCardText text={address} />
             </StyledPopupCard>
         </StyledPopup>
     );
 }
 
-const PopupCardHeader = () => {
+interface IPopupCardHeader {
+    name: string;
+    closeClickHandler: () => void;
+}
+
+const PopupCardHeader: React.FC<IPopupCardHeader> = ({ name, closeClickHandler }) => {
     return (
         <StyledPopupCardHeader>
-            <StyledPopupCardHeading>Евгения Савченко</StyledPopupCardHeading>
-            <StyledPopupCardClose>
+            <StyledPopupCardHeading>{name}</StyledPopupCardHeading>
+            <StyledPopupCardClose onClick={closeClickHandler}>
                 <CustomIcon name='close' width={20} height={20} />
             </StyledPopupCardClose>
         </StyledPopupCardHeader>
     );
 }
 
-const PopupCardList = () => {
+interface IPopupCardList {
+    userData: Record<string, string>;
+}
+
+const PopupCardList: React.FC<IPopupCardList> = ({ userData }) => {
     return (
         <StyledPopupCardList>
-            <StyledPopupCardLI>
-                <StyledLiKey>Телефон</StyledLiKey>
-                <StyledLiValueLink href='tel:'>+7 (918) 078-17-05</StyledLiValueLink>
-            </StyledPopupCardLI>
-
-            <StyledPopupCardLI>
-                <StyledLiKey>Почта</StyledLiKey>
-                <StyledLiValueLink href='mailto:'>yysavch1@mts.ru</StyledLiValueLink>
-            </StyledPopupCardLI>
-
-            <StyledPopupCardLI>
-                <StyledLiKey>Дата приёма:</StyledLiKey>
-                <StyledLiValueText>15.10.2020</StyledLiValueText>
-            </StyledPopupCardLI>
-
-            <StyledPopupCardLI>
-                <StyledLiKey>Должность:</StyledLiKey>
-                <StyledLiValueText>Дизайнер</StyledLiValueText>
-            </StyledPopupCardLI>
-
-            <StyledPopupCardLI>
-                <StyledLiKey>Подразделение:</StyledLiKey>
-                <StyledLiValueText>Трайб автоматизированных систем контактных центров</StyledLiValueText>
-            </StyledPopupCardLI>
-        </StyledPopupCardList>
+            {
+                Object.entries(userData).map(
+                    ([key, val]) => (
+                        <StyledPopupCardLI key={key}>
+                            <StyledLiKey>{key}</StyledLiKey>
+                            {
+                                key === 'phone' &&
+                                <StyledLiValueLink href={'tel:' + val}>{val}</StyledLiValueLink>
+                            }
+                            {
+                                key === 'email' &&
+                                <StyledLiValueLink href={'mailto:' + val}>{val}</StyledLiValueLink>
+                            }
+                            {
+                                key !== 'phone' && key !== 'email' &&
+                                <StyledLiValueText>{val}</StyledLiValueText>
+                            }
+                        </StyledPopupCardLI>
+                    )
+                )
+            }
+        </StyledPopupCardList >
     );
 }
 
-const PopupCardText = () => {
+interface IPopupCardText {
+    blockHeading?: string;
+    text: string;
+}
+
+const PopupCardText: React.FC<IPopupCardText> = ({ text, blockHeading }) => {
     return (
         <StyledPopupCardText>
-            <StyledPopupTextHeading>Дополнительная информация:</StyledPopupTextHeading>
+            <StyledPopupTextHeading>{blockHeading ?? 'Additional Info:'}</StyledPopupTextHeading>
             <StyledPopupTextParagraph>
-                Разработчики используют текст в качестве заполнителя макта страницы. Разработчики используют текст в качестве заполнителя макта страницы.
+                {text}
             </StyledPopupTextParagraph>
         </StyledPopupCardText>
     );
