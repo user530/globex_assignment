@@ -1,17 +1,29 @@
 import React from 'react';
-import { Cards } from './Cards.styled';
-import { UserCard } from '../index';
+import { Cards, CardsPlaceholder } from './Cards.styled';
+import { UserCard } from './UserCard/UserCard';
+import { User } from '../../types';
 
-export const UserCards: React.FC = () => {
-    const cards = [1, 2, 3, 4, 5, 6];
+interface IUserCards {
+    users: User[];
+    cardClickHandler: (user: User) => void;
+}
 
+export const UserCards: React.FC<IUserCards> = ({ users, cardClickHandler }) => {
     return (
-        <Cards>
-            {
-                cards.map(
-                    (cardVal) => <UserCard key={cardVal} />
-                )
-            }
-        </Cards>
+        users.length > 0
+            ? (
+                <Cards>
+                    {
+                        users.map(
+                            (user, ind) => <UserCard key={ind} user={user} clickHandler={cardClickHandler} />
+                        )
+                    }
+                </Cards>
+            )
+            : (
+                <CardsPlaceholder>
+                    NO USERS TO SHOW
+                </CardsPlaceholder>
+            )
     );
 }

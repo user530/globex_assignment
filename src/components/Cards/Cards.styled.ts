@@ -15,3 +15,11 @@ export const Cards = styled.div`
         row-gap: 12px;
     }
 `;
+
+export const CardsPlaceholder = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 100px;
+    border: ${({ theme }) => `2px dashed ${theme.colors.textLight}`};
+`;
