@@ -1,0 +1,1 @@
+export { ZodValidationUser } from './zodValidation';
