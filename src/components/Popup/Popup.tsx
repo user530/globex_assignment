@@ -77,23 +77,34 @@ const PopupCardList: React.FC<IPopupCardList> = ({ userData }) => {
         <StyledPopupCardList>
             {
                 Object.entries(userData).map(
-                    ([key, val]) => (
-                        <StyledPopupCardLI key={key}>
-                            <StyledLiKey>{key}</StyledLiKey>
-                            {
-                                key === 'phone' &&
-                                <StyledLiValueLink href={'tel:' + val}>{val}</StyledLiValueLink>
-                            }
-                            {
-                                key === 'email' &&
-                                <StyledLiValueLink href={'mailto:' + val}>{val}</StyledLiValueLink>
-                            }
-                            {
-                                key !== 'phone' && key !== 'email' &&
-                                <StyledLiValueText>{val}</StyledLiValueText>
-                            }
-                        </StyledPopupCardLI>
-                    )
+                    ([key, val]) => {
+                        const keyName = (key === 'phone' && 'Телефон:')
+                            || (key === 'email' && 'Почта:')
+                            || (key === 'hire_date' && 'Дата приёма:')
+                            || (key === 'position_name' && 'Должность:')
+                            || (key === 'department' && 'Подразделение:');
+
+                        return (
+                            <StyledPopupCardLI key={key}>
+                                <StyledLiKey>
+                                    {keyName ? keyName : key}
+                                </StyledLiKey>
+
+                                {
+                                    key === 'phone' &&
+                                    <StyledLiValueLink href={'tel:' + val}>{val}</StyledLiValueLink>
+                                }
+                                {
+                                    key === 'email' &&
+                                    <StyledLiValueLink href={'mailto:' + val}>{val}</StyledLiValueLink>
+                                }
+                                {
+                                    key !== 'phone' && key !== 'email' &&
+                                    <StyledLiValueText>{val}</StyledLiValueText>
+                                }
+                            </StyledPopupCardLI>
+                        )
+                    }
                 )
             }
         </StyledPopupCardList >
@@ -108,7 +119,7 @@ interface IPopupCardText {
 const PopupCardText: React.FC<IPopupCardText> = ({ text, blockHeading }) => {
     return (
         <StyledPopupCardText>
-            <StyledPopupTextHeading>{blockHeading ?? 'Additional Info:'}</StyledPopupTextHeading>
+            <StyledPopupTextHeading>{blockHeading ?? 'Дополнительная информация:'}</StyledPopupTextHeading>
             <StyledPopupTextParagraph>
                 {text}
             </StyledPopupTextParagraph>
