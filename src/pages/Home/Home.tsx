@@ -9,7 +9,7 @@ export const HomePage: React.FC = () => {
         <MainLayout>
             <HomeSection>
                 <Container>
-                    <Searchbar />
+                    <Searchbar onSearch={(str) => console.log(str)} />
                     <UserCards />
                 </Container>
                 <Popup />

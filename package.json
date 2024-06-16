@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@types/styled-components": "^5.1.34",
