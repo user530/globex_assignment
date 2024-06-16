@@ -22,7 +22,8 @@ export const CardsPlaceholder = styled.div`
     justify-content: center;
     align-items: center;
     padding-block: 100px;
-    border: ${({ theme }) => `2px dashed ${theme.colors.textLight}`};
+    border: ${({ theme }) => `2px dashed ${theme.colors.accent}`};
+    color: ${({ theme }) => theme.colors.textLight};
 `;
 
 const spin = keyframes`

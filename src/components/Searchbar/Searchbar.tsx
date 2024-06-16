@@ -21,7 +21,7 @@ export const Searchbar: React.FC<ISearchbar> = ({ onSearch }) => {
     const debouncedSetter = React.useCallback(
         debounce(
             (newQueryString: string) => setQueryString(newQueryString),
-            300
+            100
         ),
         []
     );
