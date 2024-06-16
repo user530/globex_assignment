@@ -5,6 +5,9 @@ export const StyledSearchForm = styled.form`
     position: relative;
     margin-bottom: 32px;
 
+    @media (max-width: 767px) {
+    margin-bottom: 24px; 
+    }
 `;
 
 export const StyledSearchInput = styled.input.attrs({ type: 'search' })`

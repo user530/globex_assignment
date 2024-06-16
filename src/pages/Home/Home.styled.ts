@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
 export const HomeSection = styled.section`
-    margin-top: 64px;
+    padding-block: 64px;
+
+    @media (max-width: 767px) {
+        padding-block: 32px;
+    }
 `;
