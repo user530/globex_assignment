@@ -1,6 +1,6 @@
 import React from 'react';
 import { Cards } from './Cards.styled';
-import { UserCard } from './SingleCard.styled';
+import { UserCard } from '../index';
 
 export const UserCards: React.FC = () => {
     const cards = [1, 2, 3, 4, 5, 6];
