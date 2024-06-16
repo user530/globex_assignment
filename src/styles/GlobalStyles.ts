@@ -106,6 +106,12 @@ const GlobalStyles = createGlobalStyle`
             outline: none;
         }
     }
+
+    img, svg {
+        max-width: 100%;
+        height: auto;
+        vertical-align: middle;
+    }
 `;
 
 export default GlobalStyles;
