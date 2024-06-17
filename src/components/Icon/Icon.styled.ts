@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledIcon = styled.svg`
-    width: ${({ width, theme }) => `${width}px` || theme.spacing.medium};
-    height: ${({ height, theme }) => `${height}px` || theme.spacing.medium};
+    width: ${({ width }) => `${width || 24}px`};
+    height: ${({ height }) => `${height || 24}px`};
     color: ${({ fill }) => fill || 'currentColor'};
 `;

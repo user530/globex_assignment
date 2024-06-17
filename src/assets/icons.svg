@@ -24,6 +24,30 @@
     </g>
   </symbol>
 
+  <symbol id="angleLeft" viewBox="0 0 24 24">
+    <g>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+    </g>
+  </symbol>
+
+  <symbol id="angleRight" viewBox="0 0 24 24">
+    <g>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/>
+    </g>
+  </symbol>
+
+  <symbol id="chevronLeft" viewBox="0 0 24 24">
+    <g>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m17 16-4-4 4-4m-6 8-4-4 4-4"/>
+    </g>
+  </symbol>
+
+  <symbol id="chevronRight" viewBox="0 0 24 24">
+    <g>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 16 4-4-4-4m6 8 4-4-4-4"/>
+    </g>
+  </symbol>
+
   <symbol id="" viewBox="">
     <g>
 
