@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pagination, PaginationButton, PaginationIndicator } from './Pagination.styled';
+import { CustomIcon } from '../../Icon/Icon';
 
 interface IPagination {
     currentPage: number;
@@ -8,33 +9,49 @@ interface IPagination {
 }
 
 export const PaginationBlock: React.FC<IPagination> = ({ currentPage, totalPages, changePageHandler }) => {
+    // Amount of pages to scroll on the big swipe
+    const BIG_SWIPE = 5;
+
     if (totalPages === 1)
         return <></>;
 
-    const nextPageHandler = () => changePageHandler(currentPage + 1);
-    const prevPageHandler = () => changePageHandler(currentPage - 1);
-    const firstPageHandler = () => changePageHandler(1);
-    const lastPageHandler = () => changePageHandler(totalPages);
+    const nextPageHandler = () => changePageHandler(Math.min(totalPages, currentPage + 1));
+    const prevPageHandler = () => changePageHandler(Math.max(1, currentPage - 1));
+    const nextBigSwipeHandler = () => changePageHandler(Math.min(totalPages, currentPage + BIG_SWIPE));
+    const prevBigSwipeHandler = () => changePageHandler(Math.max(1, currentPage - BIG_SWIPE));
 
     return (
         <Pagination>
-            {
-                currentPage > 2 && <PaginationButton onClick={firstPageHandler}>--</PaginationButton>
-            }
+            <PaginationButton
+                onClick={prevBigSwipeHandler}
+                disabled={currentPage < 1 + BIG_SWIPE}
+            >
+                <CustomIcon name={`chevronLeft`} />
+            </PaginationButton>
 
-            {
-                currentPage > 1 && <PaginationButton onClick={prevPageHandler}>-</PaginationButton>
-            }
+            <PaginationButton
+                onClick={prevPageHandler}
+                disabled={currentPage <= 1}
+            >
+                <CustomIcon name={`angleLeft`} />
+            </PaginationButton>
 
-            <PaginationIndicator>{currentPage}</PaginationIndicator>
+            <PaginationIndicator>{`${currentPage} / ${totalPages}`}</PaginationIndicator>
 
-            {
-                currentPage + 1 <= totalPages && <PaginationButton onClick={nextPageHandler}>+</PaginationButton>
-            }
+            <PaginationButton
+                onClick={nextPageHandler}
+                disabled={currentPage >= totalPages}
+            >
+                <CustomIcon name={`angleRight`} />
+            </PaginationButton>
 
-            {
-                currentPage + 2 <= totalPages && <PaginationButton onClick={lastPageHandler}>++</PaginationButton>
-            }
+            <PaginationButton
+                onClick={nextBigSwipeHandler}
+                disabled={currentPage > totalPages - BIG_SWIPE}
+            >
+                <CustomIcon name={`chevronRight`} />
+            </PaginationButton>
+
 
         </Pagination>
     );

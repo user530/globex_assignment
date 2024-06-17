@@ -11,7 +11,7 @@ interface IUserCards {
 }
 
 export const UserCards: React.FC<IUserCards> = ({ users, cardClickHandler, isLoading }) => {
-    const CARDS_PER_PAGE = 9;
+    const CARDS_PER_PAGE = 6;
     const [currentPage, setCurrentPage] = React.useState<number>(1);
     const totalPages = Math.ceil(users.length / CARDS_PER_PAGE);
     const [visibleUsers, setVisibleUsers] = React.useState<User[]>([]);
