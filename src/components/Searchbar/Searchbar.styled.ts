@@ -34,12 +34,12 @@ export const StyledSearchInput = styled.input.attrs({ type: 'search' })`
     }
 `;
 
-export const StyledSearchBtn = styled.button.attrs({ type: 'submit' })`
-position: absolute;
-right: 26px;
-top: 50%;
-transform: translateY(-50%);
-width: 20px;
-height: 20px;
-color: ${({ theme }) => theme.colors.icons};
+export const StyledSearchSpan = styled.span`
+    position: absolute;
+    right: 26px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: ${({ theme }) => theme.colors.icons};
 `;

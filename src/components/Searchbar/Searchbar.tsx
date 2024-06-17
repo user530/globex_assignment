@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledSearchForm, StyledSearchInput, StyledSearchBtn } from './Searchbar.styled';
+import { StyledSearchForm, StyledSearchInput, StyledSearchSpan } from './Searchbar.styled';
 import { CustomIcon } from '../index';
 import { useSearch } from './useSearch';
 
@@ -8,16 +8,14 @@ interface ISearchbar {
 }
 
 export const Searchbar: React.FC<ISearchbar> = ({ onSearch }) => {
-    const { inputHandler, keypressHandler, submitHandler } = useSearch({ onSearch });
+    const { onQueryChange, } = useSearch({ onSearch });
     return (
-        <StyledSearchForm onSubmit={submitHandler}>
-            <StyledSearchInput
-                onChange={inputHandler}
-                onKeyDown={keypressHandler}
-            />
-            <StyledSearchBtn>
+        <StyledSearchForm>
+            <StyledSearchInput onChange={onQueryChange} />
+
+            <StyledSearchSpan>
                 <CustomIcon name='search' width={20} height={20} />
-            </StyledSearchBtn>
+            </StyledSearchSpan>
         </StyledSearchForm>
     );
 }
