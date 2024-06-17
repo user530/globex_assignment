@@ -8,10 +8,12 @@ interface IUserCards {
     users: User[];
     cardClickHandler: (user: User) => void;
     isLoading: boolean;
+    cardsPerPage?: number;
+    pagesPerSwipe?: number;
 }
 
-export const UserCards: React.FC<IUserCards> = ({ users, cardClickHandler, isLoading }) => {
-    const CARDS_PER_PAGE = 6;
+export const UserCards: React.FC<IUserCards> = ({ users, cardClickHandler, isLoading, cardsPerPage, pagesPerSwipe }) => {
+    const CARDS_PER_PAGE = cardsPerPage ?? 6;
     const [currentPage, setCurrentPage] = React.useState<number>(1);
     const totalPages = Math.ceil(users.length / CARDS_PER_PAGE);
     const [visibleUsers, setVisibleUsers] = React.useState<User[]>([]);
@@ -56,7 +58,12 @@ export const UserCards: React.FC<IUserCards> = ({ users, cardClickHandler, isLoa
                                 )
                             }
                         </Cards>
-                        <PaginationBlock currentPage={currentPage} totalPages={totalPages} changePageHandler={changePageHandler} />
+                        <PaginationBlock
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            changePageHandler={changePageHandler}
+                            pagesPerSwipe={pagesPerSwipe}
+                        />
                     </>
                 )
                 : (
