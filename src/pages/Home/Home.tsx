@@ -1,8 +1,7 @@
 import React from 'react';
 import { MainLayout } from '../../layouts/MainLayout/MainLayout';
-import { Container } from '../../styles/shared';
 import { Popup, Searchbar, UserCards } from '../../components';
-import { HomeSection } from './Home.styled';
+import { FlexColumnContainer, HomeSection } from './Home.styled';
 import { User } from '../../types';
 import { clearCache, fetchData, getQueryString } from '../../utils/api';
 import { ZodValidationUsers } from '../../utils/validation';
@@ -58,10 +57,10 @@ export const HomePage: React.FC = () => {
     return (
         <MainLayout>
             <HomeSection>
-                <Container>
+                <FlexColumnContainer>
                     <Searchbar onSearch={onSearch} />
                     <UserCards users={users} cardClickHandler={openCard} isLoading={isLoading} />
-                </Container>
+                </FlexColumnContainer>
                 <Popup user={popup} closePopupHandler={closePopup} />
             </HomeSection>
         </MainLayout>

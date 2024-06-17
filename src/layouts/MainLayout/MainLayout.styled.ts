@@ -17,4 +17,9 @@ export const MainFooter = styled(Footer)`
 
 export const MainContent = styled.main`
     flex-grow: 1;
+    display: flex;
+
+    & > * {
+        width: 100%;
+    }
 `;

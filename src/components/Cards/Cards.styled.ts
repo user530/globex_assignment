@@ -22,6 +22,7 @@ export const CardsPlaceholder = styled.div`
     justify-content: center;
     align-items: center;
     padding-block: 100px;
+    border-radius: 16px;
     border: ${({ theme }) => `2px dashed ${theme.colors.accent}`};
     color: ${({ theme }) => theme.colors.textLight};
 `;
@@ -41,11 +42,12 @@ interface SpinnerProps {
 }
 
 export const Spinner = styled.div<SpinnerProps>`
-    width: ${({ size }) => `${size || 200}px`};
-    height: ${({ size }) => `${size || 200}px`};
-    border: ${({ size }) => `${(size || 200) / 4}px solid`};
-    border-top-color: ${({ color }) => color ?? 'red'};
+    width: ${({ size }) => `${size || 60}px`};
+    height: ${({ size }) => `${size || 60}px`};
+    border: ${({ size }) => `${(size || 60) / 10}px solid`};
+    border-color: ${({ theme }) => theme.colors.accent};
+    border-top-color: ${({ color, theme }) => color ?? theme.colors.icons};
     border-radius: 50%;
     background: transparent;
-    animation: ${spin} 1s linear infinite;
+    animation: ${spin} 1.5s linear infinite;
 `;
