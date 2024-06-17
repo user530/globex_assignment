@@ -23,6 +23,22 @@ interface IPopup {
 }
 
 export const Popup: React.FC<IPopup> = ({ user, closePopupHandler }) => {
+    React.useEffect(
+        () => {
+            //  Toggle overflow to lock body when popup is open
+            if (!user)
+                document.body.style.overflow = '';
+            else
+                document.body.style.overflow = 'hidden';
+
+            // Clean up on the umount
+            return () => {
+                document.body.style.overflow = '';
+            }
+        },
+        [user]
+    );
+
     if (!user)
         return <></>;
 

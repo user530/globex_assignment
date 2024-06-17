@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { H3 } from '../../styles/shared';
 
 export const StyledPopup = styled.div`
@@ -11,6 +11,15 @@ export const StyledPopup = styled.div`
     align-items: center;
 `;
 
+const scale = keyframes`
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+`;
+
 export const StyledPopupCard = styled.div`
     width: min(500px, 100%);
     padding: 24px;
@@ -18,6 +27,10 @@ export const StyledPopupCard = styled.div`
     background-color: ${({ theme }) => theme.colors.white};
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
     border-radius: 16px;
+    transform: scale(0);
+    animation-name: ${scale};
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 
     & > * + * {
         margin-top: 40px;
